@@ -1,0 +1,75 @@
+<div class="row post">
+  <hr>
+  <div class="col-sm-10 col-sm-offset-1">
+
+    <h1 class="text-center post-title"><%= @post.title %></h1>
+    <hr class="style">
+    <div class="post-details text-center">
+      <span class="date"><%= l @post.created_at, :format => :date %></span><br>
+      <span class="author">By
+        <%= @post.user.profile.first_name %>
+        <%= @post.user.profile.last_name %></span>
+    </div>
+
+    <div class="text-center image">
+      <img class="responsive" src="http://placehold.it/400x300"/>
+    </div>
+    <div class="post-body">
+      <%= raw @post.html %>
+      <hr>
+    </div>
+    <div class="post-tags text-right">
+      <ul>
+        Tags:<% @tags.each do |t| %>
+        <a href="#">
+          <li><%= t %></li>
+        </a>
+        <% end %>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="post-comments col-sm-10 col-sm-offset-1">
+        <% if current_user.profile.nil? %>
+          You need to complete your profile in order to post comments
+          <%= link_to "Complete Profile", new_user_profile_path(current_user) %>
+        <% elsif !current_user.profile.nil? && current_user.profile.avatar_file_name.nil? %>
+          An image/avatar is required to post comments
+          <%= link_to "Go to Profile", edit_user_profile_path(current_user) %>
+        <% else %>
+
+          <div class="row all-comments">
+            <% if @post.comments.count > 0 %>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <%= render :partial => 'comments' , post: @post %>
+                  </div>
+                </div>
+
+            <% else %>
+            <div class="row">
+              <div class="col sm-12 text-center">
+                <div class="no-comment">
+                  <p> No comment. Be the first!</p>
+                </div>
+              </div>
+            </div>
+
+            <% end %>
+            <div class="row make-comment">
+              <div class="col-sm-12">
+                <%= render "blog/comments/comment_form" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="col-sm-4">
+
+    <%= link_to "Edit Post", edit_blog_post_path(@post) , class: 'btn btn-default '%>
+  </div>
+</div>

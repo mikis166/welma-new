@@ -1,0 +1,95 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body.blog {
+  background: #eee;
+}
+.post {
+  background: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-shadow: rgba(255,255,255,0.7) 0 1px 1px;
+  font-size: 20px;
+  .image {
+    margin-top: 50px;
+    padding: 20px;
+  }
+  hr.style {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  }
+  .post-title {
+    letter-spacing: 5px;
+    line-height: 60px;
+  }
+  .post-details {
+    color: #38b50e;
+    font-size: 18px;
+    letter-spacing: 3px;
+    .author {
+      font-size: 12px;
+    }
+  }
+  .post-body {
+    letter-spacing: 1px;
+    p {
+      line-height: 30px;
+      padding: 10px;
+    }
+  }
+  .post-tags {
+
+    a,a:visited,a:focus{
+      color:#C7254E;
+      text-decoration: none;
+
+
+    }
+    ul li {
+      display: inline-block;
+      list-style: none;
+      padding: 5px;
+      border-bottom: 1px solid rgba(0,0,0,0.35);
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background-color: #C7254E;
+        color:lighten(#C7254E,20%);
+      }
+    }
+  }
+
+  .post-comments{
+    padding: 10px;
+
+    .no-comment {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      p {
+        margin:0;
+      }
+    }
+  }
+}
+.post-more-details {
+  margin-top: 20px;
+}
+.well {
+  box-shadow: rgba(0,0,0,0.4) 0 1px 2px;
+}
+.well-title {
+  margin-bottom: 20px;
+  a,
+  a:visited,
+  a:hover {
+    text-decoration: none;
+    color: #444;
+    border-bottom: 1px dotted #444;
+  }
+}
+.posts-container {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: rgba(255,255,255,0.3) 1px 3px 2px;
+}

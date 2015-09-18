@@ -1,0 +1,51 @@
+<% if current_user.admin? %>
+<div class="col-md-4 col-md-offset-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Administrator options</h3>
+    </div>
+    <div class="panel-body">
+      <%= link_to "Manage Posts", blog_posts_path, class: 'btn btn-warning btn-lg btn-block' %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<div class="col-sm-12 posts-container">
+  <% @posts.each do |post| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+
+        <div class="well-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <img src="http://placehold.it/250x150"/>
+            </div>
+            <div class="col-sm-9">
+              <h4 class="well-title"><%= link_to post.title, blog_post_path(post) %></h4>
+              <%= truncate(sanitize(post.markdown), length: 220) %>
+              <div class="row post-more-details">
+                <div class="col-sm-10">
+                  <span>Published:</span> <%= l post.published_at, :format => :date %> |
+                  <% if post.comments.count > 0 %>
+                    <span> <%= pluralize(post.comments.count, "comment") %> </span>
+                  <% else %>
+                    <span> 0 comments</span>
+                  <% end %>
+                </div>
+                <div class="col-sm-2">
+                  <%= link_to "Read More...", blog_post_path(post), class:"btn btn-primary" %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% end %>
+</div>

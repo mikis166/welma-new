@@ -1,0 +1,10 @@
+<div class="comment">
+  <% @post.comments.each do |comment| %>
+  <div class="attachment">
+    <%= image_tag comment.attachment.url %>
+  </div>
+    <p>
+      <%= comment.body %>
+    </p>
+  <% end %>
+</div>
