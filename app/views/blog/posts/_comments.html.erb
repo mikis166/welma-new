@@ -1,10 +1,28 @@
-<div class="comment">
-  <% @post.comments.each do |comment| %>
-  <div class="attachment">
-    <%= image_tag comment.attachment.url %>
-  </div>
-    <p>
-      <%= comment.body %>
-    </p>
-  <% end %>
-</div>
+<% @post.comments.each do |comment| %>
+  <div class="row comment">
+    <div class="row comment-creator">
+      <div class="col-sm-1 text-center">
+        <%= image_tag current_user.profile.avatar.url(:thumb) %>
+        <%= link_to "Edit", edit_blog_comment_path(comment) %>
+      </div>
+      <div class="col-sm-11">
+        <p class="fullname"><%= current_user.profile.first_name %> <%= current_user.profile.last_name %></p>
+        <span class="datetime"> <%= l comment.created_at, format: :datetime %> </span>
+
+        <div class="well row comments-well">
+          <div class="col-sm-10">
+            <%= comment.body %>
+          </div>
+          <% if comment.attachment? %>
+            <div class="col-sm-2 text-center">
+              <%= image_tag comment.attachment.url(:thumb) %>
+              <span>attachment</span>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+
+    </div>
+
+<% end %>

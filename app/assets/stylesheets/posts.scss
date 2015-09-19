@@ -1,6 +1,10 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.display-none {
+  display: none;
+}
+
 body.blog {
   background: #eee;
 }
@@ -60,14 +64,50 @@ body.blog {
   }
 
   .post-comments{
+    margin-top: 2rem;
     padding: 10px;
 
+    .new_comment {
+      padding: 20px;
+      .form-group label {
+        font-size: 16px;
+        font-weight: normal;
+      }
+    }
+
     .no-comment {
-      padding: 10px;
+      padding: 30px;
       border: 1px solid #ccc;
+
       border-radius: 10px;
       p {
         margin:0;
+        margin-bottom: 2rem;
+      }
+    }
+
+    .all-comments {
+      font-size: 16px;
+      .comment {
+        padding: 10px;
+      }
+      .well {
+        padding: 10px;
+      }
+
+      .comment-creator {
+        padding: 10px;
+        .fullname {
+          font-size: 14px;
+          margin:0;
+          display:inline-block;
+          font-weight: bold;
+          margin-left:-11px;
+          margin-bottom: 5px;
+        }
+        .datetime {
+          font-size:12px;
+        }
       }
     }
   }
@@ -75,7 +115,7 @@ body.blog {
 .post-more-details {
   margin-top: 20px;
 }
-.well {
+.well.blog_posts {
   box-shadow: rgba(0,0,0,0.4) 0 1px 2px;
 }
 .well-title {

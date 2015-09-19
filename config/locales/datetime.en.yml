@@ -8,3 +8,4 @@ en:
       short: "%d %b"
       long: "%d %B %Y"
       date: "%a, %d %b %Y"
+      datetime: "%a, %d %b %Y at %H:%M %p"

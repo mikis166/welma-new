@@ -28,7 +28,7 @@
       </ul>
     </div>
     <div class="row">
-      <div class="post-comments col-sm-10 col-sm-offset-1">
+      <div class="post-comments col-sm-12">
         <% if current_user.profile.nil? %>
           You need to complete your profile in order to post comments
           <%= link_to "Complete Profile", new_user_profile_path(current_user) %>
@@ -39,8 +39,14 @@
 
           <div class="row all-comments">
             <% if @post.comments.count > 0 %>
-                <div class="row">
+                <div class="row current-comments">
                   <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-6 col-sm-offset-3">
+                        <button type="button" name="button" id="newcomment" class="btn btn-primary btn-block">COMMENT</button>
+                      </div>
+                    </div>
+
                     <%= render :partial => 'comments' , post: @post %>
                   </div>
                 </div>
@@ -50,17 +56,18 @@
               <div class="col sm-12 text-center">
                 <div class="no-comment">
                   <p> No comment. Be the first!</p>
+                  <button type="button" name="button" id="newcomment" class="btn btn-warning btn-block">COMMENT</button>
                 </div>
               </div>
             </div>
 
             <% end %>
-            <div class="row make-comment">
+          </div>
+            <div class="row make-comment display-none">
               <div class="col-sm-12">
                 <%= render "blog/comments/comment_form" %>
               </div>
             </div>
-          </div>
         <% end %>
       </div>
     </div>
