@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get '', to: 'welcome#index', as: '/'
     resources :comments
     resources :posts
+    get '/tag/:tag', to: 'posts#list_by_tag', as: 'tag'
   end
 
   resources :horses

@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <% if !current_user.profile.nil? %>
   <div class="all-posts-bg">
       <div class="well">
@@ -13,6 +11,7 @@
             <th>Title</th>
             <th>Markdown</th>
             <th>User</th>
+            <th>Tags</th>
             <th>Published at</th>
             <th colspan="3"></th>
           </tr>
@@ -24,6 +23,7 @@
               <td><%= post.title %></td>
               <td><%= truncate(post.markdown, length: 70) %></td>
               <td><%= post.user.profile.first_name %></td>
+              <td><%= post.tags %></td>
               <td><%= post.published_at %></td>
               <td><%= link_to 'Show', blog_post_path(post), class: 'btn btn-success ' %></td>
               <td><%= link_to 'Edit', edit_blog_post_path(post), class: 'btn btn-warning ' %></td>

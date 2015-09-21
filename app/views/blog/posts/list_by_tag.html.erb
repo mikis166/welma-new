@@ -1,0 +1,51 @@
+
+<div class="row">
+  <div class="col-sm-12 well">
+    <h4>Listing all posts by tag - <span class="tag"><%= @tag %></span></h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 posts-container">
+    <% @posts.each do |post| %>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="well blog_posts">
+
+          <div class="well-body">
+            <div class="row">
+              <div class="col-sm-3 text-center">
+                <% if post.image_file_name.nil? %>
+                  <img src="http://placehold.it/230x150" alt="" />
+                <% else %>
+                  <%= image_tag post.image.url(:medium), class: "thumbnail" %>
+                <% end %>
+
+              </div>
+              <div class="col-sm-9">
+                <h4 class="well-title"><%= link_to post.title, blog_post_path(post) %></h4>
+                <%= truncate(sanitize(post.markdown), length: 220) %>
+                <div class="row post-more-details">
+                  <div class="col-sm-10">
+                    <span>Published:</span> <%= l post.published_at, :format => :date %> |
+                    <% if post.comments.count > 0 %>
+                      <span> <%= pluralize(post.comments.count, "comment") %> </span>
+                    <% else %>
+                      <span> 0 comments</span>
+                    <% end %>
+                  </div>
+                  <div class="col-sm-2">
+                    <%= link_to "Read More...", blog_post_path(post), class:"btn btn-primary" %>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% end %>
+  </div>
+</div>

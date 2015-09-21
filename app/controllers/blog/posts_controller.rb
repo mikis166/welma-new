@@ -2,7 +2,7 @@ class Blog::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :create, :destroy]
   before_filter :find_post, only: [:show,:edit,:update,:destroy]
   before_filter :require_sign_in
-  before_filter :admin_user?, except: [:show]
+  before_filter :admin_user?, except: [:show, :list_by_tag]
 
   # GET /posts
   # GET /posts.json
@@ -49,6 +49,11 @@ class Blog::PostsController < ApplicationController
     end
   end
 
+  def list_by_tag
+    @tag = params[:tag]
+    @posts = Post.where("tags LIKE ?", "%#{@tag}%")
+  end
+
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
@@ -69,6 +74,6 @@ class Blog::PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :markdown, :published_at, :tags)
+      params.require(:post).permit(:title, :markdown, :published_at, :tags, :image)
     end
 end

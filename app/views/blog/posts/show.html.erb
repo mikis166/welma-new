@@ -11,9 +11,12 @@
         <%= @post.user.profile.last_name %></span>
     </div>
 
-    <div class="text-center image">
-      <img class="responsive" src="http://placehold.it/400x300"/>
-    </div>
+    <% if !@post.image_file_name.nil? %>
+      <div class="text-center image">
+        <%= image_tag @post.image.url(:large) %>
+      </div>
+    <% end %>
+
     <div class="post-body">
       <%= raw @post.html %>
       <hr>
@@ -22,7 +25,7 @@
       <ul>
         Tags:<% @tags.each do |t| %>
         <a href="#">
-          <li><%= t %></li>
+          <li><%= link_to t, blog_tag_path(t) %></li>
         </a>
         <% end %>
       </ul>
@@ -30,11 +33,21 @@
     <div class="row">
       <div class="post-comments col-sm-12">
         <% if current_user.profile.nil? %>
-          You need to complete your profile in order to post comments
-          <%= link_to "Complete Profile", new_user_profile_path(current_user) %>
+        <div class="row col-sm-12 text-center">
+          <p>
+            You need to complete your profile in order to post comments
+          </p>
+          <%= link_to "Complete Profile", new_user_profile_path(current_user), class: "btn btn-primary btn-lg" %>
+        </div>
+
         <% elsif !current_user.profile.nil? && current_user.profile.avatar_file_name.nil? %>
-          An image/avatar is required to post comments
-          <%= link_to "Go to Profile", edit_user_profile_path(current_user) %>
+        <div class="row col-sm-12 text-center">
+          <p>
+            An image/avatar is required to post comments
+          </p>
+          <%= link_to "Go to Profile", edit_user_profile_path(current_user), class: "btn btn-warning btn-lg" %>
+        </div>
+
         <% else %>
         <div class="row make-comment display-none">
           <div class="col-sm-12">
@@ -58,10 +71,18 @@
 
             <% else %>
               <div class="row no-comment">
-                <div class="col sm-12 text-center">
-                  <div class="no-comment-body">
-                    <p> No comment. Be the first!</p>
-                    <button type="button" name="button" class="btn btn-warning btn-block newcomment">COMMENT</button>
+                <div class="col-sm-12">
+                  <div class="row">
+                    <div class="col-sm-12 text-center">
+                      <div class="no-comment-body">
+                        <p> No comment. Be the first!</p>
+                        <button type="button" name="button" class="btn btn-warning btn-block newcomment">COMMENT</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="div comments-partial">
+
                   </div>
                 </div>
               </div>

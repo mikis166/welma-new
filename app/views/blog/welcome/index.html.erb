@@ -19,8 +19,13 @@
 
         <div class="well-body">
           <div class="row">
-            <div class="col-sm-3">
-              <img src="http://placehold.it/250x150"/>
+            <div class="col-sm-3 text-center">
+              <% if post.image_file_name.nil? %>
+                <img src="http://placehold.it/230x150" alt="" />
+              <% else %>
+                <%= image_tag post.image.url(:medium), class: "thumbnail" %>
+              <% end %>
+
             </div>
             <div class="col-sm-9">
               <h4 class="well-title"><%= link_to post.title, blog_post_path(post) %></h4>
