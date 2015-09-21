@@ -54,3 +54,8 @@
 
   <% end %>
 </div>
+<div class="row">
+  <div class="col-sm-12 text-center">
+    <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

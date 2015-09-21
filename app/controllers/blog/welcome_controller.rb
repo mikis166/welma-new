@@ -3,6 +3,6 @@ class Blog::WelcomeController < ApplicationController
 
   def index
     @blog = true
-    @posts = Post.all
+    @posts = Post.paginate(:page => params[:page],:per_page => 15)
   end
 end
