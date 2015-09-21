@@ -1,41 +1,48 @@
 <p id="notice"><%= notice %></p>
 
-<div class="all-posts-bg">
-  <div class="well">
-    <h1>Listing Posts</h1>
+<% if !current_user.profile.nil? %>
+  <div class="all-posts-bg">
+      <div class="well">
+        <h1>Listing Posts</h1>
+      </div>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Markdown</th>
+            <th>User</th>
+            <th>Published at</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td><%= post.title %></td>
+              <td><%= truncate(post.markdown, length: 70) %></td>
+              <td><%= post.user.profile.first_name %></td>
+              <td><%= post.published_at %></td>
+              <td><%= link_to 'Show', blog_post_path(post), class: 'btn btn-success ' %></td>
+              <td><%= link_to 'Edit', edit_blog_post_path(post), class: 'btn btn-warning ' %></td>
+              <td><%= link_to 'Destroy', blog_post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger ' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+      <%= link_to 'New Post', new_blog_post_path , class: 'btn btn-success '%> <%= link_to "Back", blog_path , class: 'btn btn-warning '%>
+    </div>
   </div>
-
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Markdown</th>
-        <th>User</th>
-        <th>Published at</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td><%= post.title %></td>
-          <td><%= truncate(post.markdown, length: 70) %></td>
-          <td><%= post.user.profile.first_name %></td>
-          <td><%= post.published_at %></td>
-          <td><%= link_to 'Show', blog_post_path(post), class: 'btn btn-success ' %></td>
-          <td><%= link_to 'Edit', edit_blog_post_path(post), class: 'btn btn-warning ' %></td>
-          <td><%= link_to 'Destroy', blog_post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger ' %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br>
-
-  <%= link_to 'New Post', new_blog_post_path , class: 'btn btn-success '%> <%= link_to "Back", blog_path , class: 'btn btn-warning '%>
-</div>
-
-
-</div>
+<% else %>
+  <div class="well">
+    <p>
+      Please go here and complete your profile in order to manage posts.
+      <%= link_to "Profile", user_profile_path(current_user) %>
+    </p>
+  </div>
+<% end %>
