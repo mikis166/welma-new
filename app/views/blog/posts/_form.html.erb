@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group well">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
-  <div class="form-group">
+  <div class="form-group well">
       <%= f.label :image %>
        <%= f.file_field :image, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group well">
     <%= f.label :markdown %><br>
-    <%= f.text_area :markdown,size: "60x10" %>
+    <%= f.text_area :markdown,size: "60x10" , class: 'form-control'%>
   </div>
-  <div class="field">
+  <div class="form-group well">
     <%= f.label :tags %><br>
-    <%= f.text_field :tags %>
+    <%= f.text_field :tags, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="field well">
     <%= f.label :user_id %><br>
     <%= f.hidden_field :user_id %>
     <%= current_user.profile.first_name %> <%= current_user.profile.last_name %>
   </div>
-  <div class="field">
+  <div class="form-group well">
     <%= f.label :published_at %><br>
-    <%= f.datetime_select :published_at %>
+    <%= f.datetime_select :published_at , class: 'form-control'%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save" , class:"btn btn-success" %> <%= link_to 'Back', blog_posts_path, class:"btn btn-warning" %>
   </div>
 <% end %>

@@ -1,4 +1,5 @@
-<%= form_for [:blog, @comment] do |f| %>
+<%= form_for [:blog, @comment], remote: true do |f| %>
+
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -29,6 +30,7 @@
 
 
   <div class="actions">
-    <%= f.submit "Edit comment", class:"btn btn-danger btn-block" %>
+    <%= f.submit "Edit Comment", class:"btn btn-danger btn-block" %>
+    <a class="btn btn-warning btn-block cancel">Cancel</a>
   </div>
 <% end %>

@@ -1,0 +1,9 @@
+$('.no-comment').hide();
+$('.current-comments').hide();
+$(".edit_container").html(" <%= escape_javascript(render partial: 'blog/comments/edit', comment: @comment) %> ").fadeIn();
+
+$('.cancel').on("click",function(){
+  $('.no-comment').fadeIn();
+  $('.current-comments').fadeIn();
+  $('.edit_container').hide();
+});

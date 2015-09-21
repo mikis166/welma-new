@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :stripe_card_token, :email, :password, :password_confirmation) }
     end
 
-    def authorization
+    def require_sign_in
       unless user_signed_in?
         redirect_to new_user_session_url, :notice => 'Please register/log in first'
       end
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
       if user_signed_in? && current_user.admin?
         return true
       else
-        redirect_to new_user_session_url, :notice => 'You do not have enough permissions to access this page'
+        redirect_to root_url, :notice => 'You do not have enough permissions to access this page'
       end
     end
 end

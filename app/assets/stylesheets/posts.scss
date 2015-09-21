@@ -5,6 +5,11 @@
   display: none;
 }
 
+.all-posts-bg {
+  padding: 20px;
+  background-color: #f3f3f3;
+  height: 100%;
+}
 body.blog {
   background: #eee;
 }
@@ -75,7 +80,7 @@ body.blog {
       }
     }
 
-    .no-comment {
+    .no-comment-body {
       padding: 30px;
       border: 1px solid #ccc;
 
@@ -97,6 +102,10 @@ body.blog {
 
       .comment-creator {
         padding: 10px;
+        .thumbnail {
+          display: inline-block;
+          margin-bottom: none;
+        }
         .fullname {
           font-size: 14px;
           margin:0;

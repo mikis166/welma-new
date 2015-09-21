@@ -36,47 +36,45 @@
           An image/avatar is required to post comments
           <%= link_to "Go to Profile", edit_user_profile_path(current_user) %>
         <% else %>
-
+        <div class="row make-comment display-none">
+          <div class="col-sm-12">
+            <%= render "blog/comments/comment_form" %>
+          </div>
+        </div>
           <div class="row all-comments">
             <% if @post.comments.count > 0 %>
                 <div class="row current-comments">
                   <div class="col-sm-12">
                     <div class="row">
                       <div class="col-sm-6 col-sm-offset-3">
-                        <button type="button" name="button" id="newcomment" class="btn btn-primary btn-block">COMMENT</button>
+                        <button type="button" name="button" class="btn btn-primary btn-block newcomment">COMMENT</button>
                       </div>
                     </div>
-
-                    <%= render :partial => 'comments' , post: @post %>
+                    <div class="div comments-partial">
+                        <%= render :partial => 'comments' , post: @post %>
+                    </div>
                   </div>
                 </div>
 
             <% else %>
-            <div class="row">
-              <div class="col sm-12 text-center">
-                <div class="no-comment">
-                  <p> No comment. Be the first!</p>
-                  <button type="button" name="button" id="newcomment" class="btn btn-warning btn-block">COMMENT</button>
+              <div class="row no-comment">
+                <div class="col sm-12 text-center">
+                  <div class="no-comment-body">
+                    <p> No comment. Be the first!</p>
+                    <button type="button" name="button" class="btn btn-warning btn-block newcomment">COMMENT</button>
+                  </div>
                 </div>
               </div>
-            </div>
-
             <% end %>
           </div>
-            <div class="row make-comment display-none">
-              <div class="col-sm-12">
-                <%= render "blog/comments/comment_form" %>
-              </div>
-            </div>
+
         <% end %>
       </div>
     </div>
 
+    <div class="edit_container display-none">
 
+    </div>
   </div>
 
-  <div class="col-sm-4">
-
-    <%= link_to "Edit Post", edit_blog_post_path(@post) , class: 'btn btn-default '%>
-  </div>
 </div>

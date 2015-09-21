@@ -1,4 +1,4 @@
-<%= form_for [:blog, @comment] do |f| %>
+<%= form_for [:blog, @comment], remote: true do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -21,7 +21,7 @@
        <%= f.file_field :attachment, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
   <div class="form-group">
     <%= f.hidden_field :post_id %>
@@ -30,5 +30,6 @@
 
   <div class="actions">
     <%= f.submit "Create comment", class:"btn btn-danger btn-block" %>
+    <a class="btn btn-warning btn-block cancel">Cancel</a>
   </div>
 <% end %>

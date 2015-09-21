@@ -1,7 +1,7 @@
 class Blog::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :create, :destroy]
   before_filter :find_post, only: [:show,:edit,:update,:destroy]
-  before_filter :authorization
+  before_filter :require_sign_in
   before_filter :admin_user?, except: [:show]
 
   # GET /posts
@@ -40,7 +40,7 @@ class Blog::PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to blog_post_url(@post), notice: 'Post was successfully updated.' }
+        format.html { redirect_to blog_posts_url, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
