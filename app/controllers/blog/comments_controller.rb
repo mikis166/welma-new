@@ -2,19 +2,15 @@ class Blog::CommentsController < ApplicationController
 
   before_filter :require_sign_in
   before_action :authenticate_user!
+  # skip_before_filter  :verify_authenticity_token
   before_action :creator?, except: [:create]
 
   def create
     @comment = Comment.new(comment_params)
     @post = @comment.post
-    if @comment.save
-      respond_to do |format|
-        flash[:notice] = "Successfully created..."
-        format.js
-      end
-    else
-      flash[:notice] = "Error creating comment"
-      redirect_to blog_post_url(@post)
+    @comment.save
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -32,9 +28,6 @@ class Blog::CommentsController < ApplicationController
     respond_to do |format|
       if @comment.update(comment_params)
         format.js
-      else
-        format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end

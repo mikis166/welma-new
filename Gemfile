@@ -20,7 +20,7 @@ gem 'stripe', '1.16.1'
 gem 'figaro', '1.0.0'
 gem 'paperclip', '4.2.1'
 gem "paperclip-dropbox", ">= 1.1.7"
-
+gem 'remotipart', '~> 1.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views

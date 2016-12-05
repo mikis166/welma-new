@@ -1,5 +1,5 @@
 $(".make-comment").hide();
-$(".comments-partial").html(" <%= j render partial: 'blog/posts/comments', post: @post %> ")
+$(".comments-partial").html(" <%= escape_javascript(render partial: 'blog/posts/comments', post: @post) %> ")
 $('.no-comment').fadeIn();
 $('.no-comment-body').hide();
 $('.current-comments').fadeIn();

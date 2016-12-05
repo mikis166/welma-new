@@ -1,5 +1,5 @@
-$(document).ready(function(){
-  $('.newcomment').click(function(){
+$(document).on('ready', function(){
+  $('.newcomment').on("click", function(){
     $('.no-comment').hide();
     $('.current-comments').hide();
     $('.make-comment').fadeIn();
