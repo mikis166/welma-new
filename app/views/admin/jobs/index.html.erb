@@ -1,0 +1,40 @@
+<div class="well">
+  <h1>Listing Jobs</h1>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Company</th>
+          <th>Salary</th>
+          <th>Type</th>
+          <th>Category</th>
+          <th>Contact</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @jobs.each do |job| %>
+          <tr>
+            <td><%= job.title %></td>
+            <td><%= job.description %></td>
+            <td><%= job.company %></td>
+            <td><%= job.salary %></td>
+            <td><%= job.kind %></td>
+            <td><%= job.category %></td>
+            <td><%= job.contact %></td>
+            <td><%= link_to 'View', admin_job_path(job) %></td>
+            <td><%= link_to 'Edit', edit_admin_job_path(job) %></td>
+            <td><%= link_to 'Destroy', admin_job_path(job), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+
+  <%= link_to 'New Job', new_admin_job_path, class: "btn btn-info" %>
+</div>
