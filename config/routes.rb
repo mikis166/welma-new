@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get "/users", to: "users#index"
     delete "/user/:id", to: "users#destroy", as: :user
   end
+  resources :jobs, only: [:index,:show]
 
   resources :horses
 

@@ -1,0 +1,19 @@
+<div class="well" id="job-listings">
+  <h1>Job listings</h1>
+  <hr>
+  <% @jobs.each do |job| %>
+    <div class="row job">
+      <div class="col-sm-12">
+        <h4>
+          <%= link_to job.title, job, class: "job-title" %>
+          <% if !job.salary.blank? %>
+             ($<%= job.salary %>)
+          <% end %>
+        </h4>
+        <p class="job-key-details">
+          <%= job.company %> | <%= job.kind %> | <%= job.category %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>

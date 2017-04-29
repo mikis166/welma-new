@@ -25,7 +25,7 @@
             <td><%= job.kind %></td>
             <td><%= job.category %></td>
             <td><%= job.contact %></td>
-            <td><%= link_to 'View', admin_job_path(job) %></td>
+            <td><%= link_to 'View', job_path(job) %></td>
             <td><%= link_to 'Edit', edit_admin_job_path(job) %></td>
             <td><%= link_to 'Destroy', admin_job_path(job), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
