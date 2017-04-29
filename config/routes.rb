@@ -7,6 +7,11 @@ Rails.application.routes.draw do
     get '/tag/:tag', to: 'posts#list_by_tag', as: 'tag'
   end
 
+  namespace :admin do
+    get "/users", to: "users#index"
+    delete "/user/:id", to: "users#destroy", as: :user
+  end
+
   resources :horses
 
   devise_for :users, controllers: { registrations: 'users/registrations' }

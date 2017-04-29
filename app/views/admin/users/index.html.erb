@@ -1,0 +1,23 @@
+<div class="table-responsive" id="manage-users">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Job title</th>
+        <th colspan="3">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |u| %>
+        <tr>
+          <td><%= u.profile.first_name %></td>
+          <td><%= u.profile.last_name %></td>
+          <td><%= u.profile.job_title %></td>
+          <td><%= link_to 'Destroy', admin_user_path(u), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger ' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
