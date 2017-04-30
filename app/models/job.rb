@@ -1,4 +1,5 @@
 class Job < ActiveRecord::Base
+  has_many :candidates
   before_save :save_html
 
   def save_html

@@ -1,7 +1,7 @@
 <div class="well">
   <h1>Listing Jobs</h1>
 
-  <div class="table-responsive">
+
     <table class="table">
       <thead>
         <tr>
@@ -12,6 +12,7 @@
           <th>Type</th>
           <th>Category</th>
           <th>Contact</th>
+          <th>No. of candidates</th>
         </tr>
       </thead>
 
@@ -19,20 +20,34 @@
         <% @jobs.each do |job| %>
           <tr>
             <td><%= job.title %></td>
-            <td><%= job.description %></td>
+            <td><%= truncate(job.description, length: 100) %></td>
             <td><%= job.company %></td>
             <td><%= job.salary %></td>
             <td><%= job.kind %></td>
             <td><%= job.category %></td>
             <td><%= job.contact %></td>
-            <td><%= link_to 'View', job_path(job) %></td>
-            <td><%= link_to 'Edit', edit_admin_job_path(job) %></td>
-            <td><%= link_to 'Destroy', admin_job_path(job), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= job.candidates.count %></td>
+            <td>
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Actions
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><%= link_to 'Candidates', admin_job_candidates_path(job) %></li>
+                  <li><%= link_to 'View', job_path(job) %></li>
+                  <li><%= link_to 'Edit', edit_admin_job_path(job) %></li>
+                  <li role="separator" class="divider"></li>
+                  <li><%= link_to 'Destroy', admin_job_path(job), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                </ul>
+              </div>
+
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-  </div>
+
 
   <br>
 

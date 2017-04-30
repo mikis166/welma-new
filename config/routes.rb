@@ -8,11 +8,16 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :jobs
+    resources :jobs do
+      resources :candidates, only: [:index]
+    end
     get "/users", to: "users#index"
     delete "/user/:id", to: "users#destroy", as: :user
   end
-  resources :jobs, only: [:index,:show]
+  resources :jobs, only: [:index,:show] do
+    resources :candidates, only: [:new, :create]
+  end
+
 
   resources :horses
 
