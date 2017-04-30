@@ -13,3 +13,19 @@
     font-size: 0.9em;
   }
 }
+
+#job-listing {
+  .job-title {
+    font-size: 2em;
+    color: #6aa1d0;
+    margin-bottom: 1em;
+  }
+  .job-key-details {
+    span {
+      letter-spacing: .3px;
+      display: inline-block;
+      margin: 0 .3em;
+    }
+  }
+
+}

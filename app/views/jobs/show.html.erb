@@ -1,0 +1,19 @@
+<div class="well" id="job-listing">
+  <h3 class="job-title"><%= @job.title%></h3>
+  <p class="job-key-details">
+    <span>
+      <%= @job.company %>
+    </span>
+    <span>
+      | <%= @job.kind %>
+    </span>
+    <span>
+       | <%= @job.category %>
+    </span>
+    <span>
+       | $<%= @job.salary %>
+    </span>
+  </p>
+  <hr>
+  <div class="job-description"><%= raw @job.description%></div>
+</div>
