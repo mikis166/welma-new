@@ -12,9 +12,9 @@
     <tbody>
       <% @users.each do |u| %>
         <tr>
-          <td><%= u.profile.first_name %></td>
-          <td><%= u.profile.last_name %></td>
-          <td><%= u.profile.job_title %></td>
+          <td><%= u.profile.try(:first_name) %></td>
+          <td><%= u.profile.try(:last_name) %></td>
+          <td><%= u.profile.try(:job_title) %></td>
           <td><%= link_to 'Destroy', admin_user_path(u), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger ' %></td>
         </tr>
       <% end %>
