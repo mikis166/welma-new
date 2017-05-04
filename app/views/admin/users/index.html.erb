@@ -2,6 +2,8 @@
   <table class="table">
     <thead>
       <tr>
+        <th>ID</th>
+        <th>Email</th>
         <th>Name</th>
         <th>Surname</th>
         <th>Job title</th>
@@ -12,9 +14,17 @@
     <tbody>
       <% @users.each do |u| %>
         <tr>
-          <td><%= u.profile.first_name.nil?  ? "None provided" : u.profile.first_name %></td>
-          <td><%= u.profile.last_name.nil?  ? "None provided" : u.profile.last_name %></td>
-          <td><%= u.profile.job_title.nil? ? "None provided" : u.profile.job_title %></td>
+          <td> <%= u.id %> </td>
+          <td> <%= u.email %> </td>
+          <% if !u.profile.nil? %>
+            <td><%= u.profile.first_name.nil?  ? "None provided" : u.profile.first_name %></td>
+            <td><%= u.profile.last_name.nil?  ? "None provided" : u.profile.last_name %></td>
+            <td><%= u.profile.job_title.nil? ? "None provided" : u.profile.job_title %></td>
+          <% else %>
+            <td>Profile not configured</td>
+            <td>Profile not configured</td>
+            <td>Profile not configured</td>
+          <% end %>
           <td><%= link_to 'Destroy', admin_user_path(u), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger ' %></td>
         </tr>
       <% end %>
