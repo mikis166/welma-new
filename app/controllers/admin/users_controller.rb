@@ -1,7 +1,7 @@
 class Admin::UsersController < Admin::BaseController
 
   def index
-    @users = User.includes(:profile).all
+    @users = User.includes(:profile).order("id ASC")
   end
 
   def destroy
