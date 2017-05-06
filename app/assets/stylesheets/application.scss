@@ -67,7 +67,11 @@ ul#conversations-list {
   .panel {
     margin-bottom: 0;
     .panel-heading {
-      padding: 10px 30px;
+      padding: 10px 15px;
+      width: 305px;
+    }
+    .panel-body {
+      width: 305px;
     }
   }
   .btn-xs {
