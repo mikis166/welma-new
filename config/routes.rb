@@ -18,14 +18,22 @@ Rails.application.routes.draw do
     resources :candidates, only: [:new, :create]
   end
 
-
   resources :horses
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
+
   resources :users do
     resource :profile
   end
+
   resources :contacts
+  resources :conversations, only: [:create] do
+    member do
+      post :close
+    end
+    resources :messages, only: [:create]
+  end
+
   get '/about' => 'pages#about'
   root 'pages#home'
 

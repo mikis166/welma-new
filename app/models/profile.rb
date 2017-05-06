@@ -9,4 +9,8 @@ class Profile < ActiveRecord::Base
                     :dropbox_visibility => 'public'
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
 end

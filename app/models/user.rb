@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_one :profile
   has_many :posts
   has_many :comments
+  has_many :messages
+  has_many :conversations, foreign_key: :sender_id
   attr_accessor :stripe_card_token
 
   def save_with_payment
