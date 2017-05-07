@@ -8,9 +8,7 @@ class ApplicationController < ActionController::Base
 
   def conversations
     if user_signed_in?
-      p "current user id #{current_user.id}"
-      p "this is the session before"
-      p session[:conversations]
+
       session[:conversations] ||= []
       convs = Conversation.where("recipient_id = ? OR sender_id = ?", current_user.id, current_user.id)
 
@@ -23,15 +21,11 @@ class ApplicationController < ActionController::Base
           end
 
           if c.add_recipient_to_session? && !c.someone_offline?
-            p "entered session recipient"
             session[:conversations] << c.id if (!session[:conversations].include?(c.id) && (c.id_to_add_to_session == current_user.id))
-            p "session after update"
-            p session[:conversations]
             c.update(add_recipient_to_session?: false, id_to_add_to_session: nil)
           end
 
           if c.window_was_closed_for.length > 0 && c.window_was_closed_for.include?(current_user.id.to_s) && c.new_messages_available_for.include?(current_user.id.to_s)
-            p "entered new message for user"
 
             session[:conversations] << c.id if (!session[:conversations].include?(c.id))
             c.window_was_closed_for = c.window_was_closed_for.delete_if{|i|i==current_user.id.to_s}
@@ -40,9 +34,6 @@ class ApplicationController < ActionController::Base
           end
         end
       end
-
-      p "this is the session after"
-      p session[:conversations]
 
       @users = User.all.where.not(id: current_user)
       @conversations = Conversation.includes(:recipient, :messages)
